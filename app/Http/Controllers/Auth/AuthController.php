@@ -14,6 +14,10 @@ class AuthController extends Controller
     {
     }
 
+    /**
+     * Registers a new user.
+     * @unauthenticated
+     */
     public function register(RegisterRequest $request)
     {
         $result = $this->authService->register($request->toDTO());
@@ -21,6 +25,10 @@ class AuthController extends Controller
         return response()->json($result, 201);
     }
 
+    /**
+     * Logins a user and returns an authentication token.
+     * @unauthenticated
+     */
     public function login(LoginRequest $request)
     {
         $result = $this->authService->login($request->toDTO());
@@ -28,6 +36,10 @@ class AuthController extends Controller
         return response()->json($result);
     }
 
+    /**
+     * Logs out the authenticated user by revoking their token.
+     * @authenticated
+     */
     public function logout(Request $request)
     {
         $result = $this->authService->logout($request->user());

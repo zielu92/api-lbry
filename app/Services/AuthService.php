@@ -16,8 +16,8 @@ class AuthService
     public function register(RegisterData $data): array
     {
         $user = User::create([
-            'name' => $data->name,
-            'email' => $data->email,
+            'name'     => $data->name,
+            'email'    => $data->email,
             'password' => Hash::make($data->password),
         ]);
 
@@ -25,8 +25,8 @@ class AuthService
 
         return [
             'message' => 'User registered successfully',
-            'user' => $user,
-            'token' => $token,
+            'user'    => $user,
+            'token'   => $token,
         ];
     }
 
@@ -47,8 +47,8 @@ class AuthService
 
         return [
             'message' => 'Login successful',
-            'user' => $user,
-            'token' => $token,
+            'user'    => $user,
+            'token'   => $token,
         ];
     }
 
