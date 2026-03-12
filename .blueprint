@@ -1,2 +1,25 @@
+created:
+    - app/Http/Controllers/BookController.php
+    - app/Http/Controllers/AuthorController.php
+    - database/factories/AuthorFactory.php
+    - database/factories/BookFactory.php
+    - database/migrations/2026_03_12_184917_create_authors_table.php
+    - database/migrations/2026_03_12_184918_create_books_table.php
+    - database/migrations/2026_03_12_184919_create_author_book_table.php
+    - app/Models/Author.php
+    - app/Models/Book.php
+    - tests/Feature/Http/Controllers/BookControllerTest.php
+    - tests/Feature/Http/Controllers/AuthorControllerTest.php
+    - app/Http/Requests/BookStoreRequest.php
+    - app/Http/Requests/BookUpdateRequest.php
+    - app/Jobs/UpdateAuthorLastBook.php
+    - app/Http/Resources/BookCollection.php
+    - app/Http/Resources/BookResource.php
+    - app/Http/Resources/AuthorCollection.php
+    - app/Http/Resources/AuthorResource.php
+updated:
+    - routes/api.php
+    - routes/web.php
 models:
-    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: string, remember_token: 'string:100 nullable' }
+    Author: { name: string, last_book_title: 'string nullable', relationships: { belongsToMany: Book } }
+    Book: { title: string, description: 'longText nullable', relationships: { belongsToMany: Author } }

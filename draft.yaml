@@ -1,5 +1,49 @@
 models:
-  # ...
+  Author:
+    name: string
+    last_book_title: string nullable
+    relationships:
+      belongsToMany: Book
+
+  Book:
+    title: string
+    description: longText nullable
+    relationships:
+      belongsToMany: Author
 
 controllers:
-  # ...
+  Book:
+    resource: api
+    index:
+      query: with:authors paginate:10
+      resource: collection:Book
+    show:
+      query: with:authors
+      resource: Book
+    store:
+      validate: title, description, author_ids
+      save: book
+      dispatch: UpdateAuthorLastBook with:book
+      resource: Book
+    update:
+      validate: title, description
+      update: book
+      resource: Book
+    delete:
+      delete: book
+      respond: 204
+
+  Author:
+    index:
+      query: with:books paginate:10
+      resource: collection:Author
+    show:
+      query: with:books
+      resource: Author
+
+jobs:
+  UpdateAuthorLastBook
+
+resources:
+  Book: title, description, authors
+  Author: name, last_book_title, books
