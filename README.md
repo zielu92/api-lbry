@@ -19,5 +19,3 @@ Lightweight API for the LBry project. API documentation lives in `docs/api` and 
 4. Run migrations (and seed if needed):
     - ./vendor/bin/sail artisan migrate --seed
 5. Open container url in browser 
-
-Place further API documentation in `docs/api` and keep `docs/api.json` up to date for Postman.
